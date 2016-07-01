@@ -632,17 +632,17 @@ uis.controller('uiSelectCtrl',
             if ( ctrl.activeIndex === 0 ) {
               // ctrl.tagging pushes items to ctrl.items, so we only have empty val
               // for `item` if it is a detected duplicate
-              if ( item === undefined ) return;
-
-              // create new item on the fly if we don't already have one;
-              // use tagging function if we have one
-              if ( ctrl.tagging.fct !== undefined && typeof item === 'string' ) {
-                item = ctrl.tagging.fct(item);
-                if (!item) return;
-              // if item type is 'string', apply the tagging label
-              } else if ( typeof item === 'string' ) {
-                // trim the trailing space
-                item = item.replace(ctrl.taggingLabel,'').trim();
+              if ( item !== undefined ) {
+                // create new item on the fly if we don't already have one;
+                // use tagging function if we have one
+                if ( ctrl.tagging.fct !== undefined && typeof item === 'string' ) {
+                  item = ctrl.tagging.fct(item);
+                  if (!item) return;
+                // if item type is 'string', apply the tagging label
+                } else if ( typeof item === 'string' ) {
+                  // trim the trailing space
+                  item = item.replace(ctrl.taggingLabel,'').trim();
+                }
               }
             }
           }
